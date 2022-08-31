@@ -11,7 +11,6 @@ class JoinTeamsController < ApplicationController
 
   def destroy
     join_team = current_user.join_teams.find_by(id: params[:id]).destroy 
-    # || @team.user.join_teams.find_by(id: params[:id]).destroy
     redirect_to teams_path, notice: "#{join_team.team.team_name}のチームから外れました"
   end
 end

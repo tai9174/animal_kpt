@@ -6,7 +6,6 @@ class TeamsController < ApplicationController
     @teams = Team.all
   end
 
-  # 追記する。render :new が省略されている。
   def new
     @team = Team.new
   end
@@ -36,7 +35,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /kpts/1 or /kpts/1.json
   def update
     respond_to do |format|
       if @team.update(team_params)
@@ -49,7 +47,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /kpts/1 or /kpts/1.json
   def destroy
     unless @team.user == current_user
       redirect_to teams_path,notice: '作成者以外はチームを削除することができません'
@@ -66,7 +63,6 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:team_id])
     @join_team_users= @team.join_team_users
     @join_team = @team.join_teams
-    # @join_teams = @join_team_users.join_teams.find_by(team_id: @team.id)
   end
 
 
@@ -135,6 +131,7 @@ class TeamsController < ApplicationController
       end
     end
   end
+
   def kpts_5
     @team = Team.find(params[:team_id])
     @join_team_users= @team.join_team_users
@@ -160,6 +157,7 @@ class TeamsController < ApplicationController
       end
     end
   end
+
   def kpts_7
     @team = Team.find(params[:team_id])
     @join_team_users= @team.join_team_users
@@ -172,56 +170,55 @@ class TeamsController < ApplicationController
       end
     end
   end
-  def calendar
-    @team = Team.find(params[:team_id])
-    @join_team_users= @team.join_team_users
-    @day0_kpts=[]
-    @day_1_kpts=[]
-    @day_2_kpts=[]
-    @day_3_kpts=[]
-    @day_4_kpts=[]
-    @day_5_kpts=[]
-    @day_6_kpts=[]
-    @day_7_kpts=[]
-    @weekday_kpts=[]
-    @join_team_users.each do |join_team_user|
-      join_team_user.kpts.each do |kpt|
-        if kpt.start_time.strftime('%Y/%-m/%d')== Time.now.strftime('%Y/%-m/%d')
-          @day0_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-1.day).strftime('%Y/%-m/%d')
-          @day_1_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-2.day).strftime('%Y/%-m/%d')
-          @day_2_kpts<< kpt       
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-3.day).strftime('%Y/%-m/%d')
-          @day_3_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-4.day).strftime('%Y/%-m/%d')
-          @day_4_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-5.day).strftime('%Y/%-m/%d')
-          @day_5_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-6.day).strftime('%Y/%-m/%d')
-          @day_6_kpts<< kpt
-        elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-7.day).strftime('%Y/%-m/%d')
-          @day_7_kpts<< kpt
-        end
-      end
-    end
-    @weekday_kpts<< @day0_kpts
-    @weekday_kpts<< @day_1_kpts
-    @weekday_kpts<< @day_2_kpts
-    @weekday_kpts<< @day_3_kpts
-    @weekday_kpts<< @day_4_kpts
-    @weekday_kpts<< @day_5_kpts
-    @weekday_kpts<< @day_6_kpts
-    @weekday_kpts<< @day_7_kpts
-  end
+
+  # def calendar
+  #   @team = Team.find(params[:team_id])
+  #   @join_team_users= @team.join_team_users
+  #   @day0_kpts=[]
+  #   @day_1_kpts=[]
+  #   @day_2_kpts=[]
+  #   @day_3_kpts=[]
+  #   @day_4_kpts=[]
+  #   @day_5_kpts=[]
+  #   @day_6_kpts=[]
+  #   @day_7_kpts=[]
+  #   @weekday_kpts=[]
+  #   @join_team_users.each do |join_team_user|
+  #     join_team_user.kpts.each do |kpt|
+  #       if kpt.start_time.strftime('%Y/%-m/%d')== Time.now.strftime('%Y/%-m/%d')
+  #         @day0_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-1.day).strftime('%Y/%-m/%d')
+  #         @day_1_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-2.day).strftime('%Y/%-m/%d')
+  #         @day_2_kpts<< kpt       
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-3.day).strftime('%Y/%-m/%d')
+  #         @day_3_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-4.day).strftime('%Y/%-m/%d')
+  #         @day_4_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-5.day).strftime('%Y/%-m/%d')
+  #         @day_5_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-6.day).strftime('%Y/%-m/%d')
+  #         @day_6_kpts<< kpt
+  #       elsif kpt.start_time.strftime('%Y/%-m/%d')== (Time.now.-7.day).strftime('%Y/%-m/%d')
+  #         @day_7_kpts<< kpt
+  #       end
+  #     end
+  #   end
+  #   @weekday_kpts<< @day0_kpts
+  #   @weekday_kpts<< @day_1_kpts
+  #   @weekday_kpts<< @day_2_kpts
+  #   @weekday_kpts<< @day_3_kpts
+  #   @weekday_kpts<< @day_4_kpts
+  #   @weekday_kpts<< @day_5_kpts
+  #   @weekday_kpts<< @day_6_kpts
+  #   @weekday_kpts<< @day_7_kpts
+  # end
   
   private
-    # Use callbacks to share common setup or constraints between actions.
   def set_team
     @team = Team.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
   def team_params
     params.require(:team).permit(:team_name)
   end

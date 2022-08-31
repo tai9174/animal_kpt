@@ -2,28 +2,22 @@ class KptsController < ApplicationController
   before_action :set_kpt, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: [:new, :create,:index]
 
-  # GET /kpts or /kpts.json
   def index
     @kpts = current_user.kpts.order(start_time: :desc)
     @kpts = @kpts.page(params[:page]).per(10)
   end
 
-  # GET /kpts/1 or /kpts/1.json
   def show
   end
 
-  # GET /kpts/new
   def new
     @kpt = Kpt.new
   end
 
-  # GET /kpts/1/edit
   def edit
   end
 
-  # POST /kpts or /kpts.json
   def create
-    
     @kpt = current_user.kpts.build(kpt_params)
 
     respond_to do |format|
@@ -37,7 +31,6 @@ class KptsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /kpts/1 or /kpts/1.json
   def update
     respond_to do |format|
       if @kpt.update(kpt_params)
@@ -50,10 +43,8 @@ class KptsController < ApplicationController
     end
   end
 
-  # DELETE /kpts/1 or /kpts/1.json
   def destroy
     @kpt.destroy
-
     respond_to do |format|
       format.html { redirect_to kpts_url, notice: "Kptは削除されました!" }
       format.json { head :no_content }
@@ -73,16 +64,12 @@ class KptsController < ApplicationController
 
   def day_kpt
   end
-
-
   
   private
-    # Use callbacks to share common setup or constraints between actions.
   def set_kpt
     @kpt = Kpt.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def kpt_params
     params.require(:kpt).permit(:keep_content, :keep_status, :problem_content, :problem_status, :try_content, :try_status, :favorite,:start_time)
   end

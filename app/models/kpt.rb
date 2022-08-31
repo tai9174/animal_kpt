@@ -10,8 +10,6 @@ class Kpt < ApplicationRecord
   enum keep_status:{
     ●達成●:2, ●問題●:0, ●少し達成●:1
   } 
-  
-
   enum problem_status:{
     ○問題○:0, ○少し達成○:1, ○達成○:2
   } 

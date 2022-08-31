@@ -20,7 +20,6 @@
     <%= form.label :"keep(最大140字)"%>
     <%= form.text_area :keep_content,size: "30x8",class: 'form-control  js-text', 
         rows: 6 , placeholder: '改行の文字数(2文字)'%>
-    
     <P class="js-text-count pull-right"></P> 
   </div>
 
@@ -88,6 +87,7 @@
     });
   });
 </script>
+
 <script type="text/javascript">
   $(function (){
     var count = $(".js-text2").text().replace(/\n/g, "改行").length;
@@ -110,6 +110,7 @@
     });
   });
 </script>
+
 <script type="text/javascript">
   $(function (){
     var count = $(".js-text3").text().replace(/\n/g, "改行").length;
