@@ -8,7 +8,11 @@
   <td></td>
 <% end %>
 <h1 style="font-family:Arial Black;font-size:50px;"><%= current_user.name %>のKPT一覧</h1><br><br>
-<%= link_to "New KPT", new_kpt_path, data: {"turbolinks" => false} %>
+
+<%= link_to new_kpt_path, data: {"turbolinks" => false} , class: 'btn btn-outline-secondary' do%>
+  <span>New KPT</span>
+<% end %>
+
 
 <table>
   <thead>
@@ -51,11 +55,22 @@
             <td style="height: 250px; width: 350px; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;background-color: #FFCCCC;">
           <%end %>
           <%=safe_join(kpt.try_content.split("\n"),tag(:br))%>
-        
         </td>
-        <td style="vertical-align:middle;"><%= link_to '詳細', kpt ,class: "show"%></td>
-        <td style="vertical-align:middle;"><%= link_to '編集', edit_kpt_path(kpt) ,class:"edit"%></td>
-        <td style="vertical-align:middle;"><%= link_to '削除', kpt, method: :delete, data: { confirm: 'Are you sure?' } ,class: "dertory"%></td>
+        <td style="vertical-align:middle;">
+          <%= link_to kpt ,class: 'btn btn-outline-info' do%>
+            詳細
+          <%end%>
+        </td>
+        <td style="vertical-align:middle;">
+          <%= link_to edit_kpt_path(kpt) ,class:"btn btn-outline-warning" do%>
+            編集
+          <%end%>         
+        </td>
+        <td style="vertical-align:middle;">
+          <%= link_to kpt, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-outline-danger" do%>
+            削除
+          <%end%>
+        </td>
       </tr>
     <% end %>
   </tbody>

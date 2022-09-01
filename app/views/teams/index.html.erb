@@ -10,13 +10,29 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <%= link_to '新チーム', new_team_path%>
+  <%= link_to new_team_path,  class: 'btn btn-outline-secondary' do%>
+    <span>新チーム</span>
+  <% end %>
+
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td style="padding: 30px 150px 10px 300px;"><%= link_to team.team_name, team_kpts0_path(team)%></td>
-        <td style="padding:30px 0px 10px 0px;"><%= link_to '詳細(チームに加る・外れる)', team %></td>
-        <td style="padding:30px 0px 10px 50px;"><%= link_to 'チームメンバー', team_members_path(team) %></td>
+        
+        <td style="padding: 30px 150px 10px 300px;">
+          <%= link_to team_kpts0_path(team), class: 'btn btn-outline-info' do%>
+            <% team.team_name %>
+          <% end %>
+        </td>
+        <td style="padding:30px 0px 10px 0px;">
+          <%= link_to team, class: 'btn btn-outline-warning' do%>
+            チームに加る・外れる
+          <% end %>
+        </td>
+        <td style="padding:30px 0px 10px 50px;">
+          <%= link_to team_members_path(team), class: 'btn btn-outline-success' do%>
+            チームメンバー   
+          <% end %>  
+        </td>
         <% if team.user == current_user %>
           <td><%= link_to '編集', edit_team_path(team) %></td>
           <td><%= link_to '削除', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
