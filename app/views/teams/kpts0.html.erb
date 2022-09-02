@@ -2,7 +2,9 @@
 <div>
 <h3><%=Date.today.strftime('%-m/%d') %>のKPT</h3>
 </div>
-<%= link_to '過去のKPT', team_calendar_path %>
+  <%= link_to team_calendar_path,  class: 'btn btn-outline-secondary' do%>
+    <span>過去のKPT</span>
+  <% end %>
 <table>
   <thead>
     <tr>

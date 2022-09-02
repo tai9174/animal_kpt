@@ -3,7 +3,9 @@
 <h3><%=(Time.now.-5.day).strftime('%-m/%d')%>のKPT</h3>
 
 </div>
-<%= link_to '過去のKPTに戻る', team_calendar_path %>
+  <%= link_to team_calendar_path,  class: 'btn btn-outline-secondary' do%>
+    <span>過去のKPT</span>
+  <% end %>
 <table>
   <thead>
     <tr>

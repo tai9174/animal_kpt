@@ -1,13 +1,62 @@
+<br>
 <h1 ><%=@team.team_name %>のKPT一週間一覧</h1>
 
-<h2><div><%= link_to "今日のKPT", team_kpts0_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-1.day).strftime('%-m/%d'), team_kpts_1_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-2.day).strftime('%-m/%d'), team_kpts_2_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-3.day).strftime('%-m/%d'), team_kpts_3_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-4.day).strftime('%-m/%d'), team_kpts_4_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-5.day).strftime('%-m/%d'), team_kpts_5_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-6.day).strftime('%-m/%d'), team_kpts_6_path(@team)%></div></h2>
-<h2><div><%= link_to (Time.now.-7.day).strftime('%-m/%d'), team_kpts_7_path(@team)%></div></h2>
+<h2>
+  <div>
+      <%= link_to team_kpts0_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <span>今日のKPT</span>
+      <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_1_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-1.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_2_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-2.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_3_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-3.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_4_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-4.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_5_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-5.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_6_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-6.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
+<h2>
+  <div>
+    <%= link_to team_kpts_7_path(@team),  class: 'btn btn-outline-secondary' do%>
+        <%=(Time.now.-7.day).strftime('%-m/%-d')%>
+    <% end %>
+  </div>
+</h2>
 <%= link_to 'チーム一覧に戻る', teams_path %>
 
 <br>
