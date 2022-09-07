@@ -8,12 +8,12 @@ class Kpt < ApplicationRecord
   validates :try_status, presence: true
   validates :start_time, presence: true
   enum keep_status:{
-    ●達成●:2, ●問題●:0, ●少し達成●:1
+    ●達成●:2, ●未達成●:0, ●少し達成●:1
   } 
   enum problem_status:{
-    ○問題○:0, ○少し達成○:1, ○達成○:2
+    ○未達成○:0, ○少し達成○:1, ○達成○:2
   } 
   enum try_status:{
-    ◎少し達成◎:1, ◎達成◎:2,◎問題◎:0,
+    ◎少し達成◎:1, ◎達成◎:2,◎未達成◎:0,
   } 
 end
